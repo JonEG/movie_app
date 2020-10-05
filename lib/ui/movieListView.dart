@@ -8,7 +8,7 @@ import 'package:movie_app/ui/movieListViewDetails.dart';
 class MovieListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Movie> movieList;
+    List<Movie> movieList= [];
 
     return Scaffold(
         appBar: AppBar(
@@ -24,8 +24,11 @@ class MovieListView extends StatelessWidget {
                     .loadString('assets/Films.json'),
                 builder: (context, snapshot) {
                   // Decode the JSON
-                  var jsonResponse = json.decode(snapshot.data.toString());
-                  movieList = (MovieList.fromJson(jsonResponse)).movies;
+                    var jsonResponse = json.decode(snapshot.data.toString());
+                    MovieList jsonMovies = (MovieList.fromJson(jsonResponse));
+                    if(jsonMovies!=null){
+                      movieList=jsonMovies.movies;
+                    }
 
                   return ListView.builder(
                       itemCount: movieList.length,
