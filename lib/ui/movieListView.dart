@@ -111,11 +111,8 @@ class MovieListView extends StatelessWidget {
     );
   }
 
-  TextStyle mainTextStyle(){
-    return TextStyle(
-        fontSize: 15.0,
-        color: Colors.white60
-    );
+  TextStyle mainTextStyle() {
+    return TextStyle(fontSize: 15.0, color: Colors.white60);
   }
 
   Widget movieImage(String imageUrl) {

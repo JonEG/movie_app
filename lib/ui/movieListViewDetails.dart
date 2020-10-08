@@ -236,17 +236,19 @@ class MovieDetailsExtraPosters extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 16),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            separatorBuilder: (context, index) => SizedBox(width: 8,),
+            separatorBuilder: (context, index) => SizedBox(
+              width: 8,
+            ),
             itemCount: posters.length,
             itemBuilder: (context, index) => ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               child: Container(
                 //width: MediaQuery.of(context).size.width,
-                width: MediaQuery.of(context).size.width/4,
+                width: MediaQuery.of(context).size.width / 4,
                 height: 160,
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: NetworkImage(posters[index]),
-                  fit: BoxFit.cover),
+                  image: DecorationImage(
+                      image: NetworkImage(posters[index]), fit: BoxFit.cover),
                 ),
               ),
             ),
