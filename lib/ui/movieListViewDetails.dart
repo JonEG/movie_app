@@ -11,16 +11,17 @@ class MovieListViewDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Movies --> ${this.movie.title}"),
+        title: Text("Movies --> ${movie.title}"),
         backgroundColor: Colors.blueGrey.shade900,
       ),
       body: ListView(
         children: <Widget>[
-          MovieDatailsThumbnail(thumbnail: this.movie.images[0]),
+          MovieDatailsThumbnail(thumbnail: movie.images[0]),
           MovieDetailsHeaderWithPoster(movie: movie),
           HorizontalLine(),
           MovieDetailsCast(movie: movie),
           HorizontalLine(),
+          MovieDetailsExtraPosters(posters: movie.images)
         ],
       ),
     );
@@ -42,7 +43,7 @@ class MovieDatailsThumbnail extends StatelessWidget {
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 190,
+              height: 170,
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(thumbnail), fit: BoxFit.cover)),
@@ -162,6 +163,7 @@ class MovieDetailsCast extends StatelessWidget {
         children: <Widget>[
           MovieField(field: "Cast", value: movie.actors),
           MovieField(field: "Directors", value: movie.director),
+          MovieField(field: "Awards", value: movie.awards)
         ],
       ),
     );
@@ -185,11 +187,11 @@ class MovieField extends StatelessWidget {
               color: Colors.black38, fontSize: 12, fontWeight: FontWeight.w300),
         ),
         Expanded(
-          child: Text(value, style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w300,
-            fontSize: 12
-          ),),
+          child: Text(
+            value,
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w300, fontSize: 12),
+          ),
         )
       ],
     );
@@ -209,4 +211,48 @@ class HorizontalLine extends StatelessWidget {
   }
 }
 
+class MovieDetailsExtraPosters extends StatelessWidget {
+  final List<String> posters;
 
+  const MovieDetailsExtraPosters({Key key, this.posters}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: 8),
+          child: Text(
+            "More movie posters".toUpperCase(),
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.black26,
+            ),
+          ),
+        ),
+        Container(
+          height: 170,
+          padding: EdgeInsets.symmetric(vertical: 16),
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            separatorBuilder: (context, index) => SizedBox(width: 8,),
+            itemCount: posters.length,
+            itemBuilder: (context, index) => ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              child: Container(
+                //width: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width/4,
+                height: 160,
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: NetworkImage(posters[index]),
+                  fit: BoxFit.cover),
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
