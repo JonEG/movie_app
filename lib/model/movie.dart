@@ -1,5 +1,6 @@
 class Movie {
   final String title;
+  final String year;
   final String rated;
   final String released;
   final String runtime;
@@ -22,6 +23,7 @@ class Movie {
 
   Movie(
       {this.title,
+      this.year,
       this.rated,
       this.released,
       this.runtime,
@@ -44,32 +46,33 @@ class Movie {
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return new Movie(
-        title: json['Title'],
-        rated: json['Rated'].toString(),
-        released: json['Released'].toString(),
-        runtime: json['Runtime'].toString(),
-        genre: json['Genre'].toString(),
-        director: json['Director'].toString(),
-        writer: json['Writer'].toString(),
-        actors: json['Actors'].toString(),
-        plot: json['Plot'].toString(),
-        language: json['Language'].toString(),
-        country: json['Country'].toString(),
-        awards: json['Awards'].toString(),
-        poster: json['Poster'].toString(),
-        metascore: json['metascore'].toString(),
-        imbdRating: json['imbdRating'].toString(),
-        imbdVotes: json['imbdVotes'].toString(),
-        imbdID: json['imbdID'].toString(),
-        type: json['Type'].toString(),
-        response: json['Response'].toString(),
-        images: new List<String>.from(json['Images']),
-        );
+      title: json['Title'],
+      year: json['Year'],
+      rated: json['Rated'].toString(),
+      released: json['Released'].toString(),
+      runtime: json['Runtime'].toString(),
+      genre: json['Genre'].toString(),
+      director: json['Director'].toString(),
+      writer: json['Writer'].toString(),
+      actors: json['Actors'].toString(),
+      plot: json['Plot'].toString(),
+      language: json['Language'].toString(),
+      country: json['Country'].toString(),
+      awards: json['Awards'].toString(),
+      poster: json['Poster'].toString(),
+      metascore: json['Metascore'].toString(),
+      imbdRating: json['imdbRating'].toString(),
+      imbdVotes: json['imdbVotes'].toString(),
+      imbdID: json['imdbID'].toString(),
+      type: json['Type'].toString(),
+      response: json['Response'].toString(),
+      images: new List<String>.from(json['Images']),
+    );
   }
 
   @override
   String toString() {
-    return 'Movie{title: $title, rated: $rated, released: $released,'
+    return 'Movie{title: $title, year: $year, rated: $rated, released: $released,'
         ' runtime: $runtime, genre: $genre, director: $director, '
         'writer: $writer, actors: $actors, plot: $plot,'
         ' language: $language, country: $country, awards: $awards,'
